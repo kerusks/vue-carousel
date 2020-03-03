@@ -1,12 +1,12 @@
 <template>
   <div class="wrap">
     <div class="header-text-container">
-      <h1>Carousel Test</h1>
+      <h1>Carousel Test {{ items.length }}</h1>
     </div>
     <div class="carousel-wrap">
       <ul class="carousel-container">
         <li class="carousel-item" v-for="(item, index) in items" :key="index">
-          <CarouselItem :item="item"/>
+          <CarouselItem :item="item" />
         </li>
         <div class="mobile-nav prev">
           <img src="../assets/arrow.svg" />
@@ -32,15 +32,19 @@ export default {
   },
   data() {
     return {
-      items: [
-        { name: "Kin Khao", tag: ["Thai"] },
-        { name: "Jū-Ni", tag: ["Sushi", "Japanese", "$$$$"] },
-        { name: "Delfina", tag: ["Pizza", "Casual"] },
-        { name: "San Tung", tag: ["Chinese", "$$"] },
-        { name: "Anchor Oyster Bar", tag: ["Seafood", "Cioppino"] },
-        { name: "Locanda", tag: ["Italian"] }
-      ]
+      items: []
     };
+  },
+  created() {
+    fetch(
+      "https://pixabay.com/api/?key=9656065-a4094594c34f9ac14c7fc4c39&q=beautiful+landscape&image_type=photo"
+    )
+      .then(response => response.json())
+      .then(
+        data =>
+          (this.items =
+            data.hits.length > 6 ? data.hits.slice(0, 6) : data.hits)
+      );
   }
 };
 </script>
@@ -49,7 +53,7 @@ export default {
 $bg-color1: #e9eee6;
 $btn-bg-color1: #00679b;
 $header-text-color: #00679b;
-$min-mobile-width: 320px;
+$min-mobile-width: 480px;
 
 .wrap {
   max-width: 1024px;
@@ -91,15 +95,14 @@ $min-mobile-width: 320px;
 
 .mobile-nav {
   position: absolute;
-  left: -0.25em;
-  top: 20%;
+  top: 38.5%;
   color: #fff;
   background: #999;
-  height: 35%;
-  width: 45%;
-  border-radius: 55%;
+  height: 100px;
+  width: 50px;
   cursor: pointer;
   z-index: 9;
+  opacity: 0.5;
 
   img {
     top: 35%;
@@ -108,19 +111,21 @@ $min-mobile-width: 320px;
   }
 
   &.prev {
-    left: -25%;
+    left: 0;
     right: auto;
+    border-radius: 0 100px 100px 0;
     img {
-      right: 20%;
+      left: 10px;
       transform: rotate(180deg);
     }
   }
 
   &.next {
     left: auto;
-    right: -25%;
+    right: 0;
+    border-radius: 100px 0px 0px 100px;
     img {
-      left: 20%;
+      right: 10px;
     }
   }
 }
@@ -138,26 +143,26 @@ $min-mobile-width: 320px;
         }
       }
     }
-  }
+    .mobile-nav {
+      display: none;
+    }
 
-  .mobile-nav {
-    display: none;
-  }
+    .lg-screen-nav-container {
+      text-align: center;
+      display: block;
 
-  .lg-screen-nav-container {
-    text-align: center;
-    display: block;
-
-    button {
-      background-color: $btn-bg-color1;
-      padding: 5px;
-      color: #eee;
-      padding: 5px 15px;
-      margin: 0px 5px;
-      font-weight: 600;
-      border-radius: 3px;
-      font-size: 16px;
-      border: 0;
+      button {
+        background-color: $btn-bg-color1;
+        padding: 5px;
+        color: #eee;
+        padding: 5px 15px;
+        margin: 0px 5px;
+        font-weight: 600;
+        border-radius: 3px;
+        font-size: 16px;
+        border: 0;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -176,7 +181,6 @@ $min-mobile-width: 320px;
     }
   }
 }
-
 
 /* 962 */
 @media (min-width: 62rem) {
