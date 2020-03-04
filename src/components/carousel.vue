@@ -4,22 +4,33 @@
       <h1>Carousel Test {{ items.length }}</h1>
     </div>
     <div class="carousel-wrap">
-      <ul class="carousel-container">
-        <li class="carousel-item" v-for="(item, index) in items" :key="index">
+      <ul
+        class="carousel-container"
+        ref="carouselContainer"
+        :style="{ transform: 'translateX(' + carousel.containerXOffSet + '%)' }"
+      >
+        <li
+          class="carousel-item"
+          v-for="(item, index) in items"
+          :key="index"
+          ref="carouselItem"
+        >
           <CarouselItem :item="item" />
         </li>
-        <div class="mobile-nav prev">
-          <img src="../assets/arrow.svg" />
-        </div>
-        <div class="mobile-nav next">
-          <img src="../assets/arrow.svg" />
-        </div>
+
       </ul>
+        <div class="mobile-nav prev" @click="navCarousel(-1)">
+          <img src="../assets/arrow.svg" />
+        </div>
+        <div class="mobile-nav next" @click="navCarousel(1)">
+          <img src="../assets/arrow.svg" />
+        </div>      
     </div>
     <div class="lg-screen-nav-container">
-      <button>Prev</button>
-      <button>Next</button>
+      <button @click="navCarousel(-1)" :disabled="isStart">Prev</button>
+      <button @click="navCarousel(1)" :disabled="isEnd">Next</button>
     </div>
+    {{ carousel }}
   </div>
 </template>
 
@@ -32,6 +43,16 @@ export default {
   },
   data() {
     return {
+      nonce: false,
+      carousel: {
+        containerWidth: null,
+        itemWidth: null,
+        showingColumns: null,
+        containerXOffSet: 100,
+        itemXOffSet: 100,
+        startX: 100,
+        endX: 100
+      },
       items: []
     };
   },
@@ -45,6 +66,56 @@ export default {
           (this.items =
             data.hits.length > 6 ? data.hits.slice(0, 6) : data.hits)
       );
+  },
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener("resize", this.resizeWin);
+    });
+  },
+  updated() {
+    if (!this.nonce) {
+      this.updateDOMInfo();
+      this.nonce = true;
+    }
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+  },
+  methods: {
+    navCarousel(d) {
+      console.log(d);
+      this.carousel.containerXOffSet =
+        d === 1
+          ? this.carousel.containerXOffSet - this.carousel.itemXOffSet
+          : this.carousel.containerXOffSet + this.carousel.itemXOffSet;
+    },
+    updateDOMInfo() {
+      if (this.$refs.carouselContainer.clientWidth) {
+        this.carousel.containerWidth = this.$refs.carouselContainer.clientWidth;
+        this.carousel.itemWidth = this.$refs.carouselContainer.children[0].clientWidth;
+        this.carousel.showingColumns = Math.round(
+          this.carousel.containerWidth / this.carousel.itemWidth
+        );
+        this.carousel.itemXOffSet = 100 / this.carousel.showingColumns;
+        this.carousel.containerXOffSet = this.carousel.itemXOffSet;
+        this.carousel.startX = this.carousel.itemXOffSet;
+        this.carousel.endX = -Math.abs(
+          this.carousel.itemXOffSet * this.items.length -
+            (this.carousel.showingColumns + 1) * this.carousel.itemXOffSet
+        );
+      }
+    },
+    resizeWin() {
+      this.updateDOMInfo();
+    }
+  },
+  computed: {
+    isStart() {
+      return this.carousel.startX === this.carousel.containerXOffSet;
+    },
+    isEnd() {
+      return this.carousel.endX === this.carousel.containerXOffSet;
+    }
   }
 };
 </script>
@@ -77,6 +148,7 @@ $min-mobile-width: 480px;
   .carousel-wrap {
     overflow: hidden;
     min-width: $min-mobile-width;
+    position: relative;
     .carousel-container {
       display: flex;
       left: -100%;
@@ -84,6 +156,7 @@ $min-mobile-width: 480px;
       margin: 0;
       padding: 0;
       position: relative;
+      transition: transform 300ms ease-in;
       transform: translateX(100%);
 
       .carousel-item {
@@ -162,6 +235,11 @@ $min-mobile-width: 480px;
         font-size: 16px;
         border: 0;
         cursor: pointer;
+
+        &:disabled {
+          background-color: #ccc;
+          cursor: default;
+        }
       }
     }
   }
