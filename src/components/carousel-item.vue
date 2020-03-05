@@ -17,11 +17,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/* Squaring the item layout */
 .carousel-img-container {
   width: 100%;
   padding-top: 100%;
   position: relative;
   overflow: hidden;
+  /* Stretching the image slightly - but can play with object-fit, this will do in the meanime */
   img {
     position: absolute;
     top: 0;

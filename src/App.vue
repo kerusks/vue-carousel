@@ -15,8 +15,8 @@ export default {
 };
 </script>
 
-
 <style>
+/* Some globals */
 @import url("https://fonts.googleapis.com/css?family=Ropa+Sans&display=swap");
 *,
 *::before,
