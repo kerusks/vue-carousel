@@ -4,8 +4,10 @@
 
 Demo available here: [Vue Carousel](http://wexsl.com/github/vue-carousel/)
 
-![Image of Vue Todo App](mobile.png)
-![Image of Vue Todo App](desktop.png)
+Resize the browser to perform responsive tests
+
+![Image of Vue Carousel Mobile](mobile.png)
+![Image of Vue Carousel Desktop](desktop.png)
 
 ## Project setup
 ```
