@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="header-text-container">
-      <h1>Carousel Test</h1>
+      <h1>Responsive Carousel Test</h1>
     </div>
     <div class="carousel-wrap">
       <ul
@@ -93,6 +93,7 @@ export default {
         this.error = false;
       } catch (e) {
         // Pump out the error
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     },

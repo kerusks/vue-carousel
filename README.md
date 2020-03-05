@@ -1,4 +1,11 @@
-# todo-carousel
+# Vue Carousel
+
+# Responsive Vue Carousel
+
+Demo available here: [Vue Carousel](http://wexsl.com/github/vue-carousel/)
+
+![Image of Vue Todo App](mobile.png)
+![Image of Vue Todo App](desktop.png)
 
 ## Project setup
 ```
@@ -15,14 +22,9 @@ yarn serve
 yarn build
 ```
 
-### Run your unit tests
+### Run your unit tests (TODO)
 ```
 yarn test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn test:e2e
 ```
 
 ### Lints and fixes files
