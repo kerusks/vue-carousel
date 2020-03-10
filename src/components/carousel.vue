@@ -83,7 +83,7 @@ export default {
   methods: {
     async fetchData() {
       // OK we could have a loader flag to await before render,
-      // same for ane error. Experimental, not worth the time
+      // same for ane error. End point could have be assigned to an env variable
       try {
         const { data } = await axios.get(
           "https://pixabay.com/api/?key=9656065-a4094594c34f9ac14c7fc4c39&q=beautiful+landscape&image_type=photo"

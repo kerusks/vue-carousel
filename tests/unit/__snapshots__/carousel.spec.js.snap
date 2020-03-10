@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carousel Carousel mount and unmount should mount 1`] = `
+<div class="wrap">
+  <div class="header-text-container">
+    <h1>Responsive Carousel Test</h1>
+  </div>
+  <div class="carousel-wrap">
+    <ul class="carousel-container" style="transform: translateX(100%);"></ul>
+    <div class="mobile-nav prev" style="display: none;"><img src="../assets/arrow.svg"></div>
+    <div class="mobile-nav next" style="display: none;"><img src="../assets/arrow.svg"></div>
+  </div>
+  <div class="lg-screen-nav-container"><button disabled="disabled">Prev</button> <button disabled="disabled">Next</button></div>
+</div>
+`;
+
+exports[`Carousel Carousel mount and unmount should unmount 1`] = `
+<div class="wrap">
+  <div class="header-text-container">
+    <h1>Responsive Carousel Test</h1>
+  </div>
+  <div class="carousel-wrap">
+    <ul class="carousel-container" style="transform: translateX(100%);"></ul>
+    <div class="mobile-nav prev" style="display: none;"><img src="../assets/arrow.svg"></div>
+    <div class="mobile-nav next" style="display: none;"><img src="../assets/arrow.svg"></div>
+  </div>
+  <div class="lg-screen-nav-container"><button disabled="disabled">Prev</button> <button disabled="disabled">Next</button></div>
+</div>
+`;
