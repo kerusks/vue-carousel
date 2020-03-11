@@ -1,5 +1,6 @@
 <template>
   <div class="wrap">
+    <!-- This should be in the parent component only carousel stuff here. It's experimental, so it'll do -->
     <div class="header-text-container">
       <h1>Responsive Carousel Test</h1>
     </div>
@@ -65,7 +66,7 @@ export default {
   mounted() {
     this.fetchData();
     // Registering once mounted
-    this.$nextTick(function() {
+    this.$nextTick(() => {
       window.addEventListener("resize", this.resizeWin);
     });
   },
@@ -93,8 +94,7 @@ export default {
         this.error = false;
       } catch (e) {
         // Pump out the error
-        // eslint-disable-next-line no-console
-        console.log(e);
+        throw new Error(e);
       }
     },
     navCarousel(direction) {
