@@ -4,7 +4,11 @@
     <div class="header-text-container">
       <h1>Responsive Carousel Test</h1>
     </div>
-    <div class="carousel-wrap">
+    <div
+      class="carousel-wrap"
+      v-if="items.length > 0"
+      aria-roledescription="carousel"
+    >
       <ul
         class="carousel-container"
         ref="carouselContainer"
@@ -15,7 +19,11 @@
           v-for="(item, index) in items"
           :key="index"
           ref="carouselItem"
+          role="group"
+          aria-roledescription="slide"
+          v-bind:aria-label="`${index + 1} of ${items.length}`"
         >
+          >
           <CarouselItem :item="item" />
         </li>
       </ul>
@@ -23,16 +31,38 @@
         TODO: We could have a nav component for small / larger screen estates,
         have created CarouselItem as sub-component for demo purposes
        -->
-      <div v-show="!isStart" class="mobile-nav prev" @click="navCarousel(0)">
+      <div
+        v-show="!isStart"
+        class="mobile-nav prev"
+        @click="navCarousel(0)"
+        aria-label="Previous Slide"
+      >
         <img src="../assets/arrow.svg" />
       </div>
-      <div v-show="!isEnd" class="mobile-nav next" @click="navCarousel(1)">
+      <div
+        v-show="!isEnd"
+        class="mobile-nav next"
+        @click="navCarousel(1)"
+        aria-label="Next Slide"
+      >
         <img src="../assets/arrow.svg" />
       </div>
-    </div>
-    <div class="lg-screen-nav-container">
-      <button @click="navCarousel(0)" :disabled="isStart">Prev</button>
-      <button @click="navCarousel(1)" :disabled="isEnd">Next</button>
+      <div class="lg-screen-nav-container">
+        <button
+          @click="navCarousel(0)"
+          :disabled="isStart"
+          aria-label="Previous Slide"
+        >
+          Prev
+        </button>
+        <button
+          @click="navCarousel(1)"
+          :disabled="isEnd"
+          aria-label="Next Slide"
+        >
+          Next
+        </button>
+      </div>
     </div>
   </div>
 </template>

@@ -5,9 +5,10 @@ exports[`Carousel Snapshot should match snapshot 1`] = `
   <div class="header-text-container">
     <h1>Responsive Carousel Test</h1>
   </div>
-  <div class="carousel-wrap">
+  <div aria-roledescription="carousel" class="carousel-wrap">
     <ul class="carousel-container" style="transform: translateX(100%);">
-      <li class="carousel-item">
+      <li role="group" aria-roledescription="slide" aria-label="1 of 6" class="carousel-item">
+        &gt;
         <div class="carousel-item-container">
           <div class="carousel-img-container"><img src="https://pixabay.com/get/57e0d2414250a414f6da8c7dda793e781039dee3564c704c7d2c7cd19348c75a_1280.jpg"></div>
           <div class="carousel-item-text">
@@ -15,7 +16,8 @@ exports[`Carousel Snapshot should match snapshot 1`] = `
           </div>
         </div>
       </li>
-      <li class="carousel-item">
+      <li role="group" aria-roledescription="slide" aria-label="2 of 6" class="carousel-item">
+        &gt;
         <div class="carousel-item-container">
           <div class="carousel-img-container"><img src="https://pixabay.com/get/55e0d2444350a414f6da8c7dda793e781039dee3564c704c7d2c7cd19348c75a_1280.jpg"></div>
           <div class="carousel-item-text">
@@ -23,7 +25,8 @@ exports[`Carousel Snapshot should match snapshot 1`] = `
           </div>
         </div>
       </li>
-      <li class="carousel-item">
+      <li role="group" aria-roledescription="slide" aria-label="3 of 6" class="carousel-item">
+        &gt;
         <div class="carousel-item-container">
           <div class="carousel-img-container"><img src="https://pixabay.com/get/57e6dd474a57ae14f6da8c7dda793e781039dee3564c704c7d2c7cd19348c75a_1280.jpg"></div>
           <div class="carousel-item-text">
@@ -31,7 +34,8 @@ exports[`Carousel Snapshot should match snapshot 1`] = `
           </div>
         </div>
       </li>
-      <li class="carousel-item">
+      <li role="group" aria-roledescription="slide" aria-label="4 of 6" class="carousel-item">
+        &gt;
         <div class="carousel-item-container">
           <div class="carousel-img-container"><img src="https://pixabay.com/get/52e3dd474950b108f5d084609621317b133fd8e04e50744176287ed0924fc7_1280.jpg"></div>
           <div class="carousel-item-text">
@@ -39,7 +43,8 @@ exports[`Carousel Snapshot should match snapshot 1`] = `
           </div>
         </div>
       </li>
-      <li class="carousel-item">
+      <li role="group" aria-roledescription="slide" aria-label="5 of 6" class="carousel-item">
+        &gt;
         <div class="carousel-item-container">
           <div class="carousel-img-container"><img src="https://pixabay.com/get/54e0dd434a55ae14f6da8c7dda793e781039dee3564c704c7d2c7cd19348c75a_1280.jpg"></div>
           <div class="carousel-item-text">
@@ -47,7 +52,8 @@ exports[`Carousel Snapshot should match snapshot 1`] = `
           </div>
         </div>
       </li>
-      <li class="carousel-item">
+      <li role="group" aria-roledescription="slide" aria-label="6 of 6" class="carousel-item">
+        &gt;
         <div class="carousel-item-container">
           <div class="carousel-img-container"><img src="https://pixabay.com/get/57e0d4474d53ae14f6da8c7dda793e781039dee3564c704c7d2c7cd19348c75a_1280.jpg"></div>
           <div class="carousel-item-text">
@@ -56,9 +62,13 @@ exports[`Carousel Snapshot should match snapshot 1`] = `
         </div>
       </li>
     </ul>
-    <div class="mobile-nav prev" style="display: none;"><img src="../assets/arrow.svg"></div>
-    <div class="mobile-nav next" style="display: none;"><img src="../assets/arrow.svg"></div>
+    <div aria-label="Previous Slide" class="mobile-nav prev" style="display: none;"><img src="../assets/arrow.svg"></div>
+    <div aria-label="Next Slide" class="mobile-nav next" style="display: none;"><img src="../assets/arrow.svg"></div>
+    <div class="lg-screen-nav-container"><button disabled="disabled" aria-label="Previous Slide">
+        Prev
+      </button> <button disabled="disabled" aria-label="Next Slide">
+        Next
+      </button></div>
   </div>
-  <div class="lg-screen-nav-container"><button disabled="disabled">Prev</button> <button disabled="disabled">Next</button></div>
 </div>
 `;
